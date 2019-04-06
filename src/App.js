@@ -7,16 +7,13 @@ import Remarkable from 'remarkable';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
-      wotcUrl: '', 
-      scrapeResults: '', 
-      scrapeTest: '' };
+    this.state = {};
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(e) {
-    this.setState({ wotcUrl: e.target.value });
+    this.setState({ wotcUrl: e.target.value.trim() });
   }
 
   handleSubmit(e) {
@@ -39,7 +36,7 @@ class App extends Component {
         const chaff = parts[1].replace(' ', '_').replace(regex, '').toLowerCase();
         scrapedData.push({ 
           name: username, 
-          url: `${wotcUrl}#${username.toLowerCase()}_${chaff}`
+          url: `${wotcUrl}#${username.replace(' ', '_').replace(regex, '').toLowerCase()}_${chaff}`
         });
       })
       const markup = scrapedData.map(data => {
