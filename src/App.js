@@ -39,7 +39,7 @@ class App extends Component {
         const chaff = parts[1].replace(' ', '_').replace(regex, '').toLowerCase();
         scrapedData.push({ 
           name: username, 
-          url: wotcUrl + '#' + username + '_' + chaff
+          url: `${wotcUrl}#${username.toLowerCase()}_${chaff}`
         });
       })
       const markup = scrapedData.map(data => {
